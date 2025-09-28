@@ -69,5 +69,27 @@ public class Ball extends MovableObject{
     public void bounceoOff(GameObject other) {
 
     }
-
+    public void bounceOffWalls(double canvasWidth, double canvasHeight) {
+        double radius = this.getWidth();
+        move(1);
+        if (getX() - radius < 0) {
+            this.setX(radius);
+            double dx = -this.getDx();
+            this.setDx(dx);
+        }
+        if (getX() + radius > canvasWidth) {
+            this.setX(canvasWidth - radius);
+            this.setDx(-getDx());
+        }
+        if (getY() - radius < 0) {
+            this.setY(radius);
+            double dy = -this.getDy();
+            this.setDy(dy);
+        }
+        if (getY() + radius > canvasHeight) {
+            this.setY(canvasHeight -radius);
+            double dy = -this.getDy();
+            this.setDy(dy);
+        }
+    }
 }

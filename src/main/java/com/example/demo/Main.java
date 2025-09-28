@@ -24,10 +24,10 @@ public class Main extends Application {
     public void start(Stage primaryStage) {
        Canvas canvas = new Canvas(WIDTH, HEIGHT);
        GraphicsContext gc = canvas.getGraphicsContext2D();
-       Renderer renderer = new Renderer(gc);
+       Renderer renderer = new Renderer(gc,canvas);
 
        Paddle paddle = new Paddle(350, 550, 100,20);
-       Ball ball = new Ball(400, 300, 50, 50);
+       Ball ball = new Ball(400, 300, 20, 20);
        new GameManager(paddle,ball, canvas);
        StackPane root = new StackPane(canvas);
        Scene scene = new Scene(root);

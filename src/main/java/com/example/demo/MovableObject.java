@@ -2,7 +2,7 @@ package com.example.demo;
 
 public abstract class MovableObject extends GameObject{
 
-    private double dx, dy; //toc do di chuyen theo truc toa do.
+    private double dx = 3, dy = 3; //toc do di chuyen theo truc toa do.
 
     public MovableObject(double x, double y, double width, double height) {
         super(x, y, width, height);
@@ -29,7 +29,7 @@ public abstract class MovableObject extends GameObject{
     }
 
     public void move(double dt) {
-        this.setX(dx * dt);
-        this.setY(dy * dt);
+        this.setX(getX() + dx * dt);
+        this.setY(getY() + dy * dt);
     }
 }
