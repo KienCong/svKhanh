@@ -64,10 +64,30 @@ public class Ball extends MovableObject{
     }
 
     public boolean checkCollision(GameObject other) {
-        return true;
+       return (this.getX() + this.getWidth() > other.getX() &&
+               this.getX() - this.getWidth()  < other.getX() + other.getWidth() &&
+               this.getY() + this.getHeight()  > other.getY() &&
+               this.getY() - this.getHeight()  < other.getY() + other.getHeight());
     }
-    public void bounceoOff(GameObject other) {
 
+    public void bounceoOffPaddle(GameObject other) {
+        if (checkCollision(other)) {
+            this.setY(other.getY() - this.getHeight()); // đặt bóng lên trên paddle
+            this.setDy(-Math.abs(this.getDy())); // đảo chiều Y lên trên
+
+            // Tính góc bật
+            double paddleCenter = other.getX() + other.getWidth() / 2.0;
+            double ballCenter = this.getX() + this.getWidth() / 2.0;
+            double hitPos = (ballCenter - paddleCenter) / (other.getWidth() / 2.0);
+
+            double angle = hitPos * 60; // lệch tối đa ±60 độ
+            double speed = Math.sqrt(this.getDx() * this.getDx() + this.getDy() * this.getDy());
+
+            double newDx = speed * Math.sin(Math.toRadians(angle));
+            double newDy = -speed * Math.cos(Math.toRadians(angle));
+            this.setDx(newDx);
+            this.setDy(newDy);
+        }
     }
     public void bounceOffWalls(double canvasWidth, double canvasHeight) {
         double radius = this.getWidth();

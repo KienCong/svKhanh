@@ -1,12 +1,13 @@
 package com.example.demo;
 
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
 public class Paddle extends MovableObject {
 
-    private final double speed = 10;
+    private final double speed = 20;
     public Paddle(double x, double y, double width, double height) {
         super(x, y, width, height);
     }
@@ -18,8 +19,10 @@ public class Paddle extends MovableObject {
 
     @Override
     public void render(GraphicsContext gc) {
-         gc.setFill(Color.BLUE);
-         gc.fillRect(getX(),getY(),getWidth(),getHeight());
+        Image paddleImg = new Image("E:\\N3_K1\\LapTrinhHuongDoiTuong\\bigProject\\demo\\src\\main\\resources\\image\\paddle.png");
+        gc.drawImage(paddleImg,getX(),getY(),getWidth(),getHeight());
+         //gc.setFill(Color.BLUE);
+        // gc.fillRect(getX(),getY(),getWidth(),getHeight());
 
     }
     public void moveLeft() {

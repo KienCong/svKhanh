@@ -15,6 +15,8 @@ import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Main extends Application {
     private final int WIDTH = 800;
@@ -24,10 +26,17 @@ public class Main extends Application {
     public void start(Stage primaryStage) {
        Canvas canvas = new Canvas(WIDTH, HEIGHT);
        GraphicsContext gc = canvas.getGraphicsContext2D();
-       Renderer renderer = new Renderer(gc,canvas);
 
-       Paddle paddle = new Paddle(350, 550, 100,20);
-       Ball ball = new Ball(400, 300, 20, 20);
+
+       Paddle paddle = new Paddle(350, 550, 200,50);
+       Ball ball = new Ball(390, 530, 20, 20);
+       List<Brick> brickList = new ArrayList<>();
+       for(int i = 0; i < 4; i++) {
+           for(int j = 0; j < 8; j++) {
+               brickList.add(new Brick(100 * j, 10*i, 100, 10));
+           }
+       }
+       Renderer renderer = new Renderer(gc,canvas,paddle);
        new GameManager(paddle,ball, canvas);
        StackPane root = new StackPane(canvas);
        Scene scene = new Scene(root);
@@ -42,6 +51,9 @@ public class Main extends Application {
                 gc.fillRect(0,0, WIDTH, HEIGHT);
                renderer.DrawPaddle(paddle);
                renderer.DrawBall(ball);
+               for(Brick brick : brickList) {
+                   renderer.DrawBrick(brick);
+               }
             }
         };
       timer.start();

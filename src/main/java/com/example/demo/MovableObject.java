@@ -2,7 +2,7 @@ package com.example.demo;
 
 public abstract class MovableObject extends GameObject{
 
-    private double dx = 3, dy = 3; //toc do di chuyen theo truc toa do.
+    private double dx = 1, dy = 1; //toc do di chuyen theo truc toa do.
 
     public MovableObject(double x, double y, double width, double height) {
         super(x, y, width, height);
